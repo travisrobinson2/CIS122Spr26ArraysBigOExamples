@@ -45,5 +45,68 @@ namespace CIS122Spr26ArraysBigOExamples
                 }
             }
         }
+
+        //O(N log N) -- log N from dividing the array in half each time, N from merging the two halves together
+        public void MergeSort(int[] values, int left, int right)
+        {
+            //Merge sort on left side of array
+            //Merge sort on right side of array
+            //Merge the two sorted halves together
+            int middle = left + (right - left) / 2;
+            MergeSort(values, left, middle);
+            MergeSort(values, middle + 1, right);
+            Merge(values, left, middle, right);
+        }
+
+        private void Merge(int[] values, int left, int middle, int right)
+        {
+            //Copy the data into temp arrays
+            int leftArrLength = middle - left + 1;
+            int rightArrLength = right - middle;
+            int[] leftArray = new int[leftArrLength];
+            int[] rightArray = new int[rightArrLength];
+
+            for (int idx = 0; idx < leftArrLength; idx++)
+            {
+                leftArray[idx] = values[left + idx];
+            }
+            for (int idx = 0; idx < rightArrLength; idx++)
+            {
+                rightArray[idx] = values[middle + 1 + idx];
+            }
+
+
+            //Merge the two sorted halves together via value comparison
+            int i = 0, j = 0, k = left;
+
+            while (i < leftArrLength && j < rightArrLength)
+            {
+                if (leftArray[i] <= rightArray[j])
+                {
+                    values[k] = leftArray[i];
+                    i++;
+                }
+                else
+                {
+                    values[k] = rightArray[j];
+                    j++;
+                }
+                k++;
+            }
+
+            //Copy what's left of the two sub arrays into the original array
+            while (i < leftArrLength)
+            {
+                values[k] = leftArray[i];
+                i++;
+                k++;
+            }
+            while (j < rightArrLength)
+            {
+                values[k] = rightArray[j];
+                j++;
+                k++;
+            }
+        }
     }
 }
