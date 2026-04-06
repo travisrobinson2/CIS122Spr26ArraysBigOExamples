@@ -80,10 +80,6 @@ namespace CIS122Spr26ArraysBigOExamples
             }
         }
 
-
-
-
-
         public void RemoveVeryFirst()
         {
 

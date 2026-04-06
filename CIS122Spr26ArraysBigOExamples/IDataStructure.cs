@@ -7,7 +7,6 @@ namespace CIS122Spr26ArraysBigOExamples
     public interface IDataStructure
     {
         int Count { get; }
-
         void Add(int value);
         int FindFirst(int targetValue);
         void Sort();
